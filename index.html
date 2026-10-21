@@ -3,571 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agence Nova | Créativité & Innovation Digitales</title>
+    <title>Dohemeto Bonaventure K. | Portfolio M2 Sorbonne</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Configuration Tailwind pour le mode sombre par classe
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                        }
+                        primary: { 50:'#f0f9ff',100:'#e0f2fe',500:'#0284c7',600:'#0284c7',700:'#0369a1' }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        /* Animation fade-in pour le filtrage du portfolio */
-        .portfolio-item {
-            transition: all 0.4s ease-in-out;
-        }
+        body { font-family:'Inter',sans-serif; transition:background-color .3s,color .3s }
+        .portfolio-item { transition:all .4s ease-in-out }
         .portfolio-item.hidden-item {
-            opacity: 0;
-            transform: scale(0.9);
-            pointer-events: none;
-            position: absolute;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+            opacity:0; transform:scale(.9); pointer-events:none;
+            position:absolute; width:0; height:0; overflow:hidden; margin:0; padding:0;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
 
-    <!-- NAVIGATION BAR -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30">
-                        N
-                    </div>
-                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">NOVA</span>
+<!-- ===================== NAVIGATION ===================== -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/30">DB</div>
+                <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">Dohemeto B.</span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Accueil</a>
+                <a href="#expertise" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Expertise</a>
+                <a href="#projets" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Projets</a>
+                <a href="#parcours" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Parcours</a>
+                <a href="#contact" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Language Switch -->
+                <a href="en.html" class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm font-semibold" aria-label="English">
+                    <i class="fas fa-globe text-xs"></i><span>EN</span>
+                </a>
+                <!-- Theme toggle -->
+                <button id="theme-toggle" aria-label="Changer le thème" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon text-lg hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun text-lg hidden text-amber-400"></i>
+                </button>
+                <!-- Mobile menu -->
+                <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2">
+        <a href="#hero" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Accueil</a>
+        <a href="#expertise" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Expertise</a>
+        <a href="#projets" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Projets</a>
+        <a href="#parcours" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Parcours</a>
+        <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="en.html" class="block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">English</a>
+    </div>
+</header>
+
+<main class="flex-grow">
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-cyan-300 mb-6">
+            <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping"></span>
+            Master 2 · Sorbonne Université
+        </span>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+            Bonjour, je suis <span class="bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 bg-clip-text text-transparent">Dohemeto Bonaventure K.</span>
+        </h1>
+
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-normal">
+            Étudiant en Master 2 à Sorbonne Université, passionné par la modélisation mathématique, l'optimisation et le développement logiciel. Mes projets combinent théorie et pratique, de l'implémentation d'algorithmes d'IA en Python à la simulation d'éléments finis en 3D, en passant par l'optimisation de trajectoires sous Matlab.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#projets" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
+                Voir mes projets
+            </a>
+            <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
+                Me contacter
+            </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-slate-200 dark:border-slate-800 max-w-4xl mx-auto">
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">4+</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Projets majeurs</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">M2</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Sorbonne Université</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">3</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Langages clés</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">2025</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Année académique</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== EXPERTISE ===================== -->
+<section id="expertise" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Mes compétences</h2>
+            <p class="text-3xl font-bold tracking-tight sm:text-4xl">Des expertises techniques variées</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- IA -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-brain"></i>
                 </div>
+                <h3 class="text-xl font-bold mb-3">IA & Algorithmes</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Implémentation d'agents intelligents (aléatoire, pondéré, stratégique, Minimax) en Python. Tests automatisés et analyse de performances.
+                </p>
+            </div>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex space-x-8 text-sm font-medium">
-                    <a href="#hero" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Accueil</a>
-                    <a href="#services" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Services</a>
-                    <a href="#portfolio" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Portfolio</a>
-                    <a href="#testimonials" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Témoignages</a>
-                    <a href="#contact" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
-                </nav>
+            <!-- C++ -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Développement C++ & POO</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Programmation orientée objet avec SFML, gestion de projet CMake, documentation Doxygen et tests unitaires CATCH2. Git et versioning.
+                </p>
+            </div>
 
-                <!-- Action Controls (Theme Toggle & Mobile Menu) -->
-                <div class="flex items-center gap-4">
-                    <!-- Dark Mode Toggle Button -->
-                    <button id="theme-toggle" aria-label="Changer le thème" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
-                        <i id="theme-toggle-dark-icon" class="fas font-solid fa-moon text-lg hidden"></i>
-                        <i id="theme-toggle-light-icon" class="fas font-solid fa-sun text-lg hidden text-amber-400"></i>
-                    </button>
+            <!-- Modélisation -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Modélisation & Optimisation</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Optimisation SQP sous Matlab, simulation 3D et maillage avec Salome. Analyse de sensibilité (vent, séisme) et étude de déformation.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+<!-- ===================== PROJETS ===================== -->
+<section id="projets" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Portfolio</h2>
+            <p class="text-3xl font-bold tracking-tight sm:text-4xl">Mes Projets M2</p>
+        </div>
+
+        <!-- Filtres -->
+        <div class="flex flex-wrap justify-center gap-2 mb-12">
+            <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-blue-600 text-white shadow-md transition-all" data-filter="all">Tous</button>
+            <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="ia">IA</button>
+            <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="cpp">C++</button>
+            <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="matlab">Matlab</button>
+            <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="3d">3D</button>
+        </div>
+
+        <!-- Grille de projets -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
+
+            <!-- Projet 1 : Puissance 4 -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="ia">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/0284c7/ffffff?text=Puissance+4" alt="Puissance 4" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-blue-600 px-2.5 py-1 rounded-md">Python / IA</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-1">Puissance 4 - Petingzoo</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Projet en binôme : agents aléatoire, pondéré, stratégique et Minimax. Suite de tests automatisés et analyse de performances.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">Python</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">Minimax</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 2 : Tetris -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="cpp">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Tetris+C%2B%2B" alt="Tetris C++" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-purple-600 px-2.5 py-1 rounded-md">C++ / SFML</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-1">Tetris C++</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Projet en binôme : POO C++, SFML, CMake, Doxygen et CATCH2. Développement Git sur deux mois, score sauvegardé localement.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">C++</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">SFML</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 3 : SQP -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="matlab">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=SQP+Ariane" alt="SQP Ariane" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-emerald-600 px-2.5 py-1 rounded-md">Matlab / SQP</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-1">Optimisation SQP</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Algorithme SQP testé sur des problèmes de configuration d'étage et de trajectoire, inspiré du lanceur Ariane (1250 kg, 200 km, 7784 m/s).</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">Matlab</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">SQP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 4 : 3D -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="3d">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Mod%C3%A9lisation+3D" alt="Modélisation 3D" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-amber-600 px-2.5 py-1 rounded-md">Salome / 3D</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-1">Modélisation 3D & Maillage</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Bâtiment 3D, hélice à 5 pales courbes et tour AON Center (332m). Maillage avec/sans raffinement, analyse vent/séisme et déformation.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-amber-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300">Salome</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-amber-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300">3D</span>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2">
-            <a href="#hero" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Accueil</a>
-            <a href="#services" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Services</a>
-            <a href="#portfolio" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Portfolio</a>
-            <a href="#testimonials" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Témoignages</a>
-            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+<!-- ===================== PARCOURS ===================== -->
+<section id="parcours" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Parcours</h2>
+            <p class="text-3xl font-bold tracking-tight sm:text-4xl">Formation & Objectifs</p>
         </div>
-    </header>
 
-    <main class="flex-grow">
-        <!-- HERO SECTION -->
-        <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32">
-            <!-- Background Glow -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-xl mb-5">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Master 2</h4>
+                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    Modélisation, optimisation et données à Sorbonne Université. Projets en IA, C++, Matlab et simulation 3D.
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">2024 – 2025</p>
+            </div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-cyan-300 mb-6">
-                    <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping"></span>
-                    Solutions Digitales de Nouvelle Génération
-                </span>
-                
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
-                    Propulsez vos idées dans une <span class="bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 bg-clip-text text-transparent">dimension supérieure</span>.
-                </h1>
-                
-                <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-normal">
-                    Nous créons des expériences web d'exception, alliant design élégant, performances ultra-rapides et interactivité captivante.
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-5">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Projets académiques</h4>
+                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    Puissance 4 (IA), Tetris (C++/SFML), SQP (Matlab) et Modélisation 3D (Salome). Développement en binôme et solo.
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">2024 – 2025</p>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-5">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Objectifs</h4>
+                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    R&D en modélisation, optimisation ou intelligence artificielle. Stage, alternance ou poursuite en thèse.
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">À partir de 2025</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Infos -->
+            <div>
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Contact</h2>
+                <h3 class="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Discutons de vos projets ou opportunités</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                    Vous avez une question sur mes projets, une opportunité de stage ou souhaitez collaborer ? Envoyez-moi un message et je vous répondrai rapidement.
                 </p>
 
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
-                        Démarrer un projet
-                    </a>
-                    <a href="#portfolio" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
-                        Voir les réalisations
-                    </a>
-                </div>
-
-                <!-- Stats grid -->
-                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-slate-200 dark:border-slate-800 max-w-4xl mx-auto">
-                    <div class="p-4">
-                        <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">99%</div>
-                        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Satisfaction Clients</div>
-                    </div>
-                    <div class="p-4">
-                        <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">150+</div>
-                        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Projets Livrés</div>
-                    </div>
-                    <div class="p-4">
-                        <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">10ms</div>
-                        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Temps de Réponse</div>
-                    </div>
-                    <div class="p-4">
-                        <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">24/7</div>
-                        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Support Dédié</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES SECTION -->
-        <section id="services" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Nos Spécialités</h2>
-                    <p class="text-3xl font-bold tracking-tight sm:text-4xl">Des services conçus pour votre réussite</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-laptop-code"></i>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Développement Web</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                            Création de sites vitrines et d'applications web sur-mesure, performants, sécurisés et optimisés SEO.
-                        </p>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-14 h-14 rounded-xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Design UI/UX</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                            Conception d'interfaces modernes et ergonomiques basées sur l'expérience utilisateur et les tendances.
-                        </p>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-14 h-14 rounded-xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Stratégie Digitale</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                            Accompagnement complet pour booster votre visibilité en ligne et maximiser la conversion de vos prospects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PORTFOLIO SECTION WITH FILTERS -->
-        <section id="portfolio" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Portfolio</h2>
-                    <p class="text-3xl font-bold tracking-tight sm:text-4xl">Nos Réalisations Récentes</p>
-                </div>
-
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-2 mb-12">
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-blue-600 text-white shadow-md transition-all" data-filter="all">Tous</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="web">Web</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="design">UI/UX</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="mobile">Mobile</button>
-                </div>
-
-                <!-- Portfolio Grid -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
-                    <!-- Item 1 (Web) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="web">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/0284c7/ffffff?text=Plateforme+SaaS" alt="Projet SaaS" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-blue-600 px-2.5 py-1 rounded-md">Plateforme Cloud</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Fintech Dashboard</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Application de gestion financière dynamique en temps réel.</p>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Email</div>
+                            <div class="font-semibold">dohemeto.bonaventure@example.com</div>
                         </div>
                     </div>
 
-                    <!-- Item 2 (Design) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="design">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Design+System" alt="Design System" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-purple-600 px-2.5 py-1 rounded-md">UI/UX Kit</span>
-                            </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fab fa-github"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Neomorphism Brand</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Système de design épuré pour une startup écoresponsable.</p>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">GitHub</div>
+                            <div class="font-semibold">github.com/dohemeto</div>
                         </div>
                     </div>
 
-                    <!-- Item 3 (Mobile) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="mobile">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/10b981/ffffff?text=App+Fitness" alt="App Mobile Fitness" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-emerald-600 px-2.5 py-1 rounded-md">iOS & Android</span>
-                            </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Pulse Fitness Tracker</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Application mobile de suivi d'activités physiques.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 (Web) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="web">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=E-Commerce" alt="Site E-commerce" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-cyan-600 px-2.5 py-1 rounded-md">E-Commerce</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Aura Store</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Boutique en ligne moderne haute performance.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 (Design) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="design">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/ec4899/ffffff?text=Redesign+Web" alt="Redesign UI" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-pink-600 px-2.5 py-1 rounded-md">UX Research</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Lumina Redesign</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Refonte visuelle et amélioration de conversion.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 (Mobile) -->
-                    <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-category="mobile">
-                        <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/f59e0b/ffffff?text=App+Livraison" alt="App Livraison" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Indisponible'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-xs font-semibold bg-amber-600 px-2.5 py-1 rounded-md">Mobile App</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-lg mb-1">Swift Express</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm">Application de géolocalisation et livraison rapide.</p>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Localisation</div>
+                            <div class="font-semibold">Paris, France</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- TESTIMONIALS SECTION -->
-        <section id="testimonials" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Avis Clients</h2>
-                    <p class="text-3xl font-bold tracking-tight sm:text-4xl">Ils nous font confiance</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm relative">
-                        <div class="flex text-amber-400 mb-4 gap-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">
-                            "L'équipe a surpassé nos attentes. Le nouveau site est extrêmement rapide et nos taux de conversion ont augmenté de 40%."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <img src="https://placehold.co/100x100/0284c7/ffffff?text=SL" alt="Sophie Laurent" class="w-12 h-12 rounded-full object-cover">
-                            <div>
-                                <h4 class="font-bold text-sm">Sophie Laurent</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">CEO, TechFlow</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm relative">
-                        <div class="flex text-amber-400 mb-4 gap-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">
-                            "Un travail de design remarquable. La communication tout au long du projet a été fluide et transparente."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=MD" alt="Marc Dubois" class="w-12 h-12 rounded-full object-cover">
-                            <div>
-                                <h4 class="font-bold text-sm">Marc Dubois</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">Directeur Artistique</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm relative">
-                        <div class="flex text-amber-400 mb-4 gap-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">
-                            "Compétences techniques impressionnantes. Notre application mobile tourne parfaitement sans aucun bug."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <img src="https://placehold.co/100x100/10b981/ffffff?text=EK" alt="Elena Kovar" class="w-12 h-12 rounded-full object-cover">
-                            <div>
-                                <h4 class="font-bold text-sm">Elena Kovar</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">Fondatrice, GreenLife</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
+            <!-- Formulaire -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-xl relative">
+                <form id="contact-form" class="space-y-6">
                     <div>
-                        <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Contact</h2>
-                        <h3 class="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Discutons de votre projet</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                            Vous avez une idée en tête ou souhaitez moderniser votre infrastructure actuelle ? Envoyez-nous un message et nous vous répondrons sous 24 heures.
-                        </p>
-
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Email</div>
-                                    <div class="font-semibold">contact@agence-nova.com</div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Téléphone</div>
-                                    <div class="font-semibold">+33 1 23 45 67 89</div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Localisation</div>
-                                    <div class="font-semibold">Paris, France</div>
-                                </div>
-                            </div>
-                        </div>
+                        <label for="name" class="block text-sm font-medium mb-2">Nom complet</label>
+                        <input type="text" id="name" required placeholder="Jean Dupont" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
                     </div>
-
-                    <!-- Interactive Form -->
-                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-xl relative">
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium mb-2">Nom complet</label>
-                                <input type="text" id="name" required placeholder="Jean Dupont" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-2">Adresse Email</label>
-                                <input type="email" id="email" required placeholder="jean@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                                <textarea id="message" rows="4" required placeholder="Décrivez votre projet..." class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm resize-none"></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 flex items-center justify-center gap-2">
-                                <span>Envoyer le message</span>
-                                <i class="fas fa-paper-plane text-xs"></i>
-                            </button>
-                        </form>
-
-                        <!-- Toast Notification Message Box (Hidden by default) -->
-                        <div id="form-toast" class="hidden absolute inset-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center text-center p-6 transition-all duration-300">
-                            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400 rounded-full flex items-center justify-center text-2xl mb-4">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2">Message Envoyé !</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Merci de nous avoir contactés. Nous vous répondrons très rapidement.</p>
-                            <button id="close-toast" class="px-6 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-sm font-semibold transition-colors">
-                                Fermer
-                            </button>
-                        </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-2">Adresse Email</label>
+                        <input type="email" id="email" required placeholder="jean@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
                     </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                        <textarea id="message" rows="4" required placeholder="Décrivez votre projet ou opportunité..." class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 flex items-center justify-center gap-2">
+                        <span>Envoyer le message</span>
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+
+                <!-- Toast de confirmation -->
+                <div id="form-toast" class="hidden absolute inset-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center text-center p-6 transition-all duration-300">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Message Envoyé !</h4>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Merci de m'avoir contacté. Je vous répondrai très rapidement.</p>
+                    <button id="close-toast" class="px-6 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-sm font-semibold transition-colors">
+                        Fermer
+                    </button>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
-                    N
-                </div>
-                <span class="font-bold text-sm tracking-tight">Agence Nova</span>
-            </div>
-
-            <p class="text-xs text-slate-500 dark:text-slate-400 text-center">
-                &copy; <span id="current-year"></span> Agence Nova. Tous droits réservés.
-            </p>
-
-            <div class="flex space-x-4 text-slate-400">
-                <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+</main>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set current year in footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+<!-- ===================== FOOTER ===================== -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">DB</div>
+            <span class="font-bold text-sm tracking-tight">Dohemeto Bonaventure K.</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 text-center">
+            &copy; <span id="current-year"></span> Dohemeto Bonaventure K. Tous droits réservés.
+        </p>
+        <div class="flex space-x-4 text-slate-400">
+            <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
 
-            // --- DARK MODE LOGIC ---
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const darkIcon = document.getElementById('theme-toggle-dark-icon');
-            const lightIcon = document.getElementById('theme-toggle-light-icon');
+<!-- ===================== SCRIPT ===================== -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Detect preferred or saved theme
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.remove('hidden');
-            } else {
+        /* --- DARK MODE --- */
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
-                darkIcon.classList.remove('hidden');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
             }
+        });
 
-            // Theme toggle event listener
-            themeToggleBtn.addEventListener('click', () => {
-                darkIcon.classList.toggle('hidden');
-                lightIcon.classList.toggle('hidden');
+        /* --- MOBILE MENU --- */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            });
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-            // --- MOBILE MENU LOGIC ---
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        /* --- FILTRES PROJETS --- */
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Close mobile menu on link click
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                    btn.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
                 });
-            });
+                button.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+                button.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
 
-            // --- PORTFOLIO FILTER LOGIC ---
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active button styling
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
-                        btn.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
-                    });
-                    button.classList.add('bg-blue-600', 'text-white', 'shadow-md');
-                    button.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
-
-                    const filter = button.getAttribute('data-filter');
-
-                    portfolioItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
-                        if (filter === 'all' || filter === category) {
-                            item.classList.remove('hidden-item');
-                        } else {
-                            item.classList.add('hidden-item');
-                        }
-                    });
+                const filter = button.getAttribute('data-filter');
+                portfolioItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        item.classList.remove('hidden-item');
+                    } else {
+                        item.classList.add('hidden-item');
+                    }
                 });
-            });
-
-            // --- INTERACTIVE CONTACT FORM ---
-            const contactForm = document.getElementById('contact-form');
-            const formToast = document.getElementById('form-toast');
-            const closeToastBtn = document.getElementById('close-toast');
-
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // Simulate form submission
-                formToast.classList.remove('hidden');
-                contactForm.reset();
-            });
-
-            closeToastBtn.addEventListener('click', () => {
-                formToast.classList.add('hidden');
             });
         });
-    </script>
+
+        /* --- FORMULAIRE --- */
+        const contactForm = document.getElementById('contact-form');
+        const formToast = document.getElementById('form-toast');
+        const closeToastBtn = document.getElementById('close-toast');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formToast.classList.remove('hidden');
+            contactForm.reset();
+        });
+
+        closeToastBtn.addEventListener('click', () => formToast.classList.add('hidden'));
+    });
+</script>
 </body>
 </html>
