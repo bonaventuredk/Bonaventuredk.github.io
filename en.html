@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dohemeto Bonaventure K. | Mathematical Engineering Portfolio</title>
+    <meta name="description" content="Portfolio of Dohemeto Bonaventure Kpessou — Master 2 Mathematical Engineering at Sorbonne Université, EDF Lab Paris-Saclay internship. Scientific computing, HPC, AI, modeling.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: { 50:'#f0f9ff',100:'#e0f2fe',500:'#0284c7',600:'#0284c7',700:'#0369a1' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-padding-top: 5rem; }
+        body { font-family:'Inter',sans-serif; transition:background-color .3s,color .3s }
+
+        .timeline-item { position:relative; padding-left:2rem; }
+        .timeline-item::before {
+            content:''; position:absolute; left:0; top:0.5rem; width:1rem; height:1rem;
+            border-radius:9999px; background:linear-gradient(135deg,#06b6d4,#2563eb);
+            border:3px solid #fff; box-shadow:0 0 0 2px #e2e8f0;
+        }
+        .dark .timeline-item::before { border-color:#0f172a; box-shadow:0 0 0 2px #334155; }
+        .timeline-item::after {
+            content:''; position:absolute; left:0.45rem; top:1.5rem; bottom:-2rem;
+            width:2px; background:#e2e8f0;
+        }
+        .dark .timeline-item::after { background:#334155; }
+        .timeline-item:last-child::after { display:none; }
+
+        .portfolio-item { transition:all .4s ease-in-out; }
+        .portfolio-item.hidden-item {
+            opacity:0; transform:scale(.9); pointer-events:none;
+            position:absolute; width:0; height:0; overflow:hidden; margin:0; padding:0;
+        }
+
+        .nav-link.active { color:#0284c7; font-weight:600; }
+        .dark .nav-link.active { color:#22d3ee; }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <a href="#home" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/30">DB</a>
+                <a href="#home" class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">Dohemeto B.</a>
+            </div>
+
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#home"       class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors active">Home</a>
+                <a href="#background" class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Background</a>
+                <a href="#projects"   class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#cv-docs"    class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">CV & Docs</a>
+                <a href="#hobbies"    class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Hobbies</a>
+                <a href="#contact"    class="nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm font-semibold" aria-label="Passer en français">
+                    <i class="fas fa-globe text-xs"></i><span>FR</span>
+                </a>
+                <button id="theme-toggle" aria-label="Toggle theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon text-lg hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun text-lg hidden text-amber-400"></i>
+                </button>
+                <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2">
+        <a href="#home"       class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+        <a href="#background" class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Background</a>
+        <a href="#projects"   class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+        <a href="#cv-docs"    class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">CV & Docs</a>
+        <a href="#hobbies"    class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Hobbies</a>
+        <a href="#contact"    class="mobile-nav-link block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="index.html"  class="block px-3 py-2 rounded-md font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Français</a>
+    </div>
+</header>
+
+<main class="flex-grow">
+
+<!-- ==================== HOME ==================== -->
+<section id="home" class="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-cyan-300 mb-6">
+            <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping"></span>
+            Master 2 · Sorbonne Université · EDF Lab Paris-Saclay Internship
+        </span>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+            Hello, I'm <span class="bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 bg-clip-text text-transparent">Dohemeto Bonaventure Kpessou</span>
+        </h1>
+
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-normal">
+            Master 2 Mathematical Engineering student at Sorbonne Université, currently doing my final internship at <strong>EDF Lab Paris-Saclay</strong>. Passionate about mathematical modeling, optimization, and high-performance computing (HPC).
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 transform hover:-translate-y-0.5">
+                View my projects
+            </a>
+            <a href="#cv-docs" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
+                Download my CV
+            </a>
+            <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
+                Contact me
+            </a>
+        </div>
+
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-slate-200 dark:border-slate-800 max-w-4xl mx-auto">
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">10+</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Projects completed</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">M2</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Sorbonne Université</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">5</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Key languages</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">2026</div>
+                <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">EDF Lab internship</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-slate-100/50 dark:bg-slate-800/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">My fields</h2>
+            <p class="text-3xl font-bold tracking-tight sm:text-4xl">Technical expertise</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <a href="#projects" class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-microchip"></i></div>
+                <h3 class="text-xl font-bold mb-3">Scientific Computing & HPC</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Parallel computing (MPI), iterative methods, preconditioning, CodeAster, FreeFem++, Helmholtz equation.</p>
+            </a>
+            <a href="#projects" class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-brain"></i></div>
+                <h3 class="text-xl font-bold mb-3">AI & Algorithms</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Intelligent agents (Minimax, weighted, strategic), neural networks, data analysis.</p>
+            </a>
+            <a href="#projects" class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-cube"></i></div>
+                <h3 class="text-xl font-bold mb-3">Modeling & Optimization</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">SQP optimization, 3D simulation (Salome), meshing, sensitivity analysis, deformation.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== BACKGROUND ==================== -->
+<section id="background" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">My background</h2>
+            <p class="text-3xl sm:text-4xl font-bold tracking-tight">Education & Experience</p>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">A solid academic path, from Bachelor's to Master 2, complemented by enriching professional experiences.</p>
+        </div>
+
+        <div class="mb-20">
+            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center"><i class="fas fa-graduation-cap"></i></span>
+                Education
+            </h3>
+            <div class="space-y-8 ml-4">
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Master 2 – Mathematical Engineering for Scientific Computing</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-cyan-300">2024 – 2025</span>
+                        </div>
+                        <p class="text-sm text-blue-600 dark:text-cyan-400 font-medium mb-2">Sorbonne Université · Valedictorian (M1) · FSMP Scholarship</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Parallel computing, CodeAster, FreeFem++, Continuum Mechanics, C++, Python, CUDA, Optimization (SQP), FFT, Data analysis, Numerical methods.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Master – Fundamental and Applied Mathematics</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-cyan-300">2023 – 2025</span>
+                        </div>
+                        <p class="text-sm text-blue-600 dark:text-cyan-400 font-medium mb-2">Institute of Mathematics and Physical Sciences (Benin) · High Honors</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Thesis supervised by Julien Salomon (DR Inria). English training (TBC Africa USA).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Bachelor's – Mathematics & Computer Science</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-cyan-300">2018 – 2021</span>
+                        </div>
+                        <p class="text-sm text-blue-600 dark:text-cyan-400 font-medium mb-2">École Normale Supérieure (Benin) · Honors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"><i class="fas fa-briefcase"></i></span>
+                Professional Experience
+            </h3>
+            <div class="space-y-8 ml-4">
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Final Internship – EDF Lab Paris-Saclay</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">April – October 2026</span>
+                        </div>
+                        <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-2">ERMES Department, T6B Group · Paris-Saclay</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            <strong>Topic:</strong> Real-arithmetic resolution of complex linear systems.<br>
+                            <strong>Keywords:</strong> Parallel computing, Preconditioning, Iterative methods, Python/CodeAster/FreeFem++, Helmholtz equation, HPC, Coarse spaces (Nicolaides, DtN, GenEO).
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Statistician Intern – CaSEG</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">August – September 2024</span>
+                        </div>
+                        <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-2">Research, Statistical, Economic and Management Studies Firm · Lomé, Togo</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Development of an inflation forecasting framework for WAEMU countries using neural networks in R. Analysis of economic data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-lg">Mathematics Teacher – CEG de GOHO (Benin)</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">September 2021 – August 2023</span>
+                        </div>
+                        <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-2">General Education College of GOHO</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Communication, didactics and pedagogy. Classroom management. Participation in pedagogical activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PROJECTS ==================== -->
+<section id="projects" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">GitHub Portfolio</h2>
+            <p class="text-3xl sm:text-4xl font-bold tracking-tight">All my projects</p>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">Here you'll find all my academic and personal projects, in progress or completed, available on my <a href="https://github.com/bonaventuredk" target="_blank" class="text-blue-600 dark:text-cyan-400 underline">GitHub</a>.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 self-center mr-2">Status:</span>
+            <button class="status-filter px-5 py-2 rounded-full text-sm font-medium bg-blue-600 text-white shadow-md transition-all" data-filter="all">All</button>
+            <button class="status-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="en-cours">In progress</button>
+            <button class="status-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="acheve">Completed</button>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-12">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 self-center mr-2">Category:</span>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-blue-600 text-white shadow-md transition-all" data-filter="all">All</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="hpc">HPC</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="ia">AI</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="cpp">C++</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="python">Python</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="matlab">Matlab</button>
+            <button class="category-filter px-4 py-1.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="3d">3D</button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]" id="projects-grid">
+
+            <!-- EDF Lab -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="en-cours" data-category="hpc python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/0284c7/ffffff?text=EDF+Lab" alt="EDF Lab" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-emerald-600 px-2.5 py-1 rounded-md">In progress · Internship</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">EDF Lab – Linear systems</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300">In progress</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Real-arithmetic resolution of complex linear systems. Parallel computing, preconditioning, iterative methods, Helmholtz, HPC.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">Python</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">CodeAster</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">HPC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QFT -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="hpc python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Quantum+Fourier" alt="QFT" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-purple-600 px-2.5 py-1 rounded-md">Completed · Python</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Quantum Fourier Transform</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Frequency analysis, period finding (Shor's algorithm) and quantum phase estimation (QPE). Python/myQLM implementation.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">Python</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">myQLM</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Projet_Quantum_Fourier_Transform" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game of Life MPI -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="hpc python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/0284c7/ffffff?text=Game+of+Life+MPI" alt="Game of Life" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-blue-600 px-2.5 py-1 rounded-md">Completed · HPC</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Game of Life – MPI</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Parallelization of Conway's Game of Life with mpi4py. Scalability, speed-up and efficiency analysis across different partitioning strategies.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">Python</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">MPI</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Projet_GameOfLife" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Desalinator -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="hpc python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=Desalinator" alt="Desalinator" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-emerald-600 px-2.5 py-1 rounded-md">Completed · FreeFem++</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Electromagnetic Desalinator</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Simulation and optimization of an ion separation system (Na⁺/Cl⁻). FreeFem++ (Stokes) + Python (Lorentz force, optimization).</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">FreeFem++</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">Python</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Projet-Collaborratif" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scarface -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="ia python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Scarface+Connect+4" alt="Scarface" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-purple-600 px-2.5 py-1 rounded-md">Completed · AI</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Scarface – Connect 4 (AI)</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Intelligent agents (random, weighted, strategic, Minimax), automated test suite and performance analysis.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">Python</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300">Minimax</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Scarface" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Number Soothsayer -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="python">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Number+Soothsayer" alt="Number Soothsayer" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-blue-600 px-2.5 py-1 rounded-md">Completed · Python</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Number Soothsayer</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Console-based number guessing game with attempt tracking, hints ("too low" / "too high") and unit tests.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-cyan-300">Python</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Number-soothsayer" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tetris -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="cpp">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=Tetris+C%2B%2B" alt="Tetris C++" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-emerald-600 px-2.5 py-1 rounded-md">Completed · C++</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Tetris C++</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Complete Tetris game with graphics and sound. OOP C++, SFML, CMake, Doxygen, CATCH2. Locally saved high scores.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">C++</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300">SFML</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Tetris" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Snake-Gang -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="en-cours" data-category="cpp">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Snake-Gang" alt="Snake-Gang" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-amber-600 px-2.5 py-1 rounded-md">In progress · C++</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">Snake-Gang</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300">In progress</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Original Snake game with a two-headed snake, allowing direction changes at each end. Project in development.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-amber-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300">C++</span>
+                    </div>
+                    <a href="https://github.com/bonaventuredk/Snake-Gang" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 hover:underline">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- SQP -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="matlab">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/ef4444/ffffff?text=SQP+Ariane" alt="SQP Ariane" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-red-600 px-2.5 py-1 rounded-md">Completed · Matlab</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">SQP Optimization – Ariane</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">SQP algorithm tested on stage configuration and trajectory problems, inspired by the Ariane launcher (1250 kg, 200 km, 7784 m/s).</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-red-50 dark:bg-slate-700 text-red-600 dark:text-red-300">Matlab</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-red-50 dark:bg-slate-700 text-red-600 dark:text-red-300">SQP</span>
+                    </div>
+                    <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-400 dark:text-slate-500">
+                        <i class="fas fa-file-pdf"></i> Report available on request
+                    </span>
+                </div>
+            </div>
+
+            <!-- 3D -->
+            <div class="portfolio-item rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md hover:shadow-xl transition-all" data-status="acheve" data-category="3d">
+                <div class="relative overflow-hidden group">
+                    <img src="https://placehold.co/600x400/f59e0b/ffffff?text=3D+Modeling" alt="3D Modeling" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=Image+Unavailable'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-amber-600 px-2.5 py-1 rounded-md">Completed · 3D</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">3D Modeling & Meshing</h3>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Completed</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">3D building, 5 curved blades propeller and AON Center tower (332m). Meshing with/without refinement, wind/seismic analysis and deformation.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-md bg-amber-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300">Salome</span>
+                        <span class="text-xs px-2 py-1 rounded-md bg-amber-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300">3D</span>
+                    </div>
+                    <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-400 dark:text-slate-500">
+                        <i class="fas fa-file-pdf"></i> Report available on request
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="https://github.com/bonaventuredk" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-slate-800 to-slate-900 dark:from-slate-700 dark:to-slate-800 hover:from-slate-900 hover:to-black shadow-lg transition-all transform hover:-translate-y-0.5">
+                <i class="fab fa-github text-xl"></i>
+                <span>View all my projects on GitHub</span>
+                <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CV & DOCS ==================== -->
+<section id="cv-docs" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Documents</h2>
+            <p class="text-3xl sm:text-4xl font-bold tracking-tight">CV & Documents</p>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">Find here my CV as well as my main academic and professional documents.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-file-pdf"></i></div>
+                <h3 class="text-xl font-bold mb-2">Curriculum Vitæ</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">My complete up-to-date CV, including my education, experience and technical skills.</p>
+                <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-md transition-all text-sm">
+                    <i class="fas fa-download"></i> Download CV (PDF)
+                </a>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 rounded-xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-book-open"></i></div>
+                <h3 class="text-xl font-bold mb-2">Master's Thesis (M1)</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Master's thesis supervised by Julien Salomon (DR Inria), Institute of Mathematics and Physical Sciences.</p>
+                <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 shadow-md transition-all text-sm">
+                    <i class="fas fa-external-link-alt"></i> View thesis
+                </a>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 rounded-xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-chart-line"></i></div>
+                <h3 class="text-xl font-bold mb-2">Internship Report – CaSEG</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Development of an inflation forecasting framework for WAEMU countries using neural networks in R.</p>
+                <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-md transition-all text-sm">
+                    <i class="fas fa-external-link-alt"></i> View report
+                </a>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 rounded-xl bg-amber-100 dark:bg-slate-700 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-flask"></i></div>
+                <h3 class="text-xl font-bold mb-2">Report – Desalinator</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Report of the collaborative simulation and optimization project of an electromagnetic desalination system.</p>
+                <a href="https://github.com/bonaventuredk/Projet-Collaborratif" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-md transition-all text-sm">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== HOBBIES ==================== -->
+<section id="hobbies" class="py-20 bg-slate-100/50 dark:bg-slate-800/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Beyond code</h2>
+            <p class="text-3xl sm:text-4xl font-bold tracking-tight">Hobbies & Interests</p>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">What drives me every day, beyond mathematics and programming.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-futbol"></i></div>
+                <h3 class="text-xl font-bold mb-3">Sports</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Football, running and team sports. I appreciate the team spirit and discipline that sports bring me on a daily basis.</p>
+            </div>
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-purple-100 dark:bg-slate-700 text-purple-600 dark:text-purple-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-book"></i></div>
+                <h3 class="text-xl font-bold mb-3">Reading & Culture</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Scientific books, essays, documentaries and films. Passionate about advances in mathematics, AI and science in general.</p>
+            </div>
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-100 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-music"></i></div>
+                <h3 class="text-xl font-bold mb-3">Music</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">I enjoy listening to music while working, particularly jazz and classical music, which help me focus.</p>
+            </div>
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-100 dark:bg-slate-700 text-amber-600 dark:text-amber-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-hands-helping"></i></div>
+                <h3 class="text-xl font-bold mb-3">Mentoring & Teaching</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Having been a mathematics teacher, I enjoy sharing my knowledge and taking part in tutoring activities.</p>
+            </div>
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-red-100 dark:bg-slate-700 text-red-600 dark:text-red-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-plane"></i></div>
+                <h3 class="text-xl font-bold mb-3">Travel</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Discovering new cultures and meeting people with diverse backgrounds. A driver of curiosity and open-mindedness.</p>
+            </div>
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all group text-center">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-robot"></i></div>
+                <h3 class="text-xl font-bold mb-3">Tech Watch</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">I closely follow advances in AI, HPC and quantum computing. A passion that fuels my projects and scientific curiosity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">Contact</h2>
+                <h3 class="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Let's discuss your projects or opportunities</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                    Do you have a question about my projects, an internship, apprenticeship or PhD opportunity? Send me a message and I'll get back to you quickly.
+                </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Email</div>
+                            <a href="mailto:dohemetobo@gmail.com" class="font-semibold hover:underline">dohemetobo@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Phone</div>
+                            <a href="tel:+33759316038" class="font-semibold hover:underline">+33 7 59 31 60 38</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0"><i class="fab fa-github"></i></div>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">GitHub</div>
+                            <a href="https://github.com/bonaventuredk" target="_blank" class="font-semibold hover:underline">github.com/bonaventuredk</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-lg shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Location</div>
+                            <div class="font-semibold">Paris, Île-de-France, France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-xl relative">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-2">Full name</label>
+                        <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-2">Email address</label>
+                        <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                        <textarea id="message" rows="4" required placeholder="Describe your project or opportunity..." class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 transition-all text-sm resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 shadow-lg shadow-cyan-500/25 transition-all duration-200 flex items-center justify-center gap-2">
+                        <span>Send message</span>
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+
+                <div id="form-toast" class="hidden absolute inset-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-2xl flex-col items-center justify-center text-center p-6 transition-all duration-300">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400 rounded-full flex items-center justify-center text-2xl mb-4"><i class="fas fa-check"></i></div>
+                    <h4 class="text-xl font-bold mb-2">Message Sent!</h4>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Thanks for reaching out. I'll get back to you very soon.</p>
+                    <button id="close-toast" class="px-6 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-sm font-semibold transition-colors">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MY NETWORKS ==================== -->
+        <div id="networks" class="mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-cyan-400 mb-2">My networks</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight">Find me on my networks</p>
+                <p class="mt-4 text-slate-600 dark:text-slate-400">Feel free to contact me through whichever channel suits you best.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+                <a href="https://www.linkedin.com/in/bonaventure-dohemeto-329423292" target="_blank" rel="noopener"
+                   class="group p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl hover:border-[#0A66C2] dark:hover:border-[#0A66C2] transition-all duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center text-3xl mb-5 group-hover:scale-110 group-hover:bg-[#0A66C2] group-hover:text-white transition-all duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">LinkedIn</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">My professional profile</p>
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] group-hover:gap-3 transition-all">
+                        View profile <i class="fas fa-arrow-right text-xs"></i>
+                    </span>
+                </a>
+
+                <a href="mailto:dohemetobo@gmail.com"
+                   class="group p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl hover:border-blue-500 dark:hover:border-cyan-400 transition-all duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center text-3xl mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Email</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">dohemetobo@gmail.com</p>
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-cyan-400 group-hover:gap-3 transition-all">
+                        Write to me <i class="fas fa-arrow-right text-xs"></i>
+                    </span>
+                </a>
+
+                <a href="https://wa.me/33759316038" target="_blank" rel="noopener"
+                   class="group p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-xl hover:border-[#25D366] dark:hover:border-[#25D366] transition-all duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center text-3xl mb-5 group-hover:scale-110 group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">WhatsApp</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">+33 7 59 31 60 38</p>
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#25D366] group-hover:gap-3 transition-all">
+                        Chat <i class="fas fa-arrow-right text-xs"></i>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">DB</div>
+            <span class="font-bold text-sm tracking-tight">Dohemeto Bonaventure K.</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 text-center">© <span id="current-year"></span> Dohemeto Bonaventure K. All rights reserved.</p>
+        <div class="flex space-x-4 text-slate-400">
+            <a href="https://github.com/bonaventuredk" target="_blank" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/bonaventure-dohemeto-329423292" target="_blank" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#contact" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
+<!-- ==================== SCRIPT ==================== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* ---------- Current year ---------- */
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    /* ---------- Dark mode ---------- */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon  = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        lightIcon.classList.remove('hidden');
+    } else {
+        document.documentElement.classList.remove('dark');
+        darkIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        darkIcon.classList.toggle('hidden');
+        lightIcon.classList.toggle('hidden');
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    });
+
+    /* ---------- Mobile menu ---------- */
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu    = document.getElementById('mobile-menu');
+    const mobileLinks   = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    /* ---------- Scrollspy ---------- */
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section[id]');
+
+    function updateActiveLink() {
+        let current = '';
+        const scrollPos = window.scrollY + 100;
+        sections.forEach(section => {
+            if (scrollPos >= section.offsetTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    /* ---------- Project filters ---------- */
+    const statusButtons   = document.querySelectorAll('.status-filter');
+    const categoryButtons = document.querySelectorAll('.category-filter');
+    const portfolioItems  = document.querySelectorAll('.portfolio-item');
+    let currentStatus = 'all';
+    let currentCategory = 'all';
+
+    function applyFilters() {
+        portfolioItems.forEach(item => {
+            const status     = item.getAttribute('data-status');
+            const categories = item.getAttribute('data-category').split(' ');
+            const statusMatch   = currentStatus === 'all' || status === currentStatus;
+            const categoryMatch = currentCategory === 'all' || categories.includes(currentCategory);
+            if (statusMatch && categoryMatch) {
+                item.classList.remove('hidden-item');
+            } else {
+                item.classList.add('hidden-item');
+            }
+        });
+    }
+
+    statusButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            statusButtons.forEach(b => {
+                b.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            });
+            btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+            btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            currentStatus = btn.getAttribute('data-filter');
+            applyFilters();
+        });
+    });
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryButtons.forEach(b => {
+                b.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            });
+            btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+            btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            currentCategory = btn.getAttribute('data-filter');
+            applyFilters();
+        });
+    });
+
+    /* ---------- Contact form ---------- */
+    const contactForm   = document.getElementById('contact-form');
+    const formToast     = document.getElementById('form-toast');
+    const closeToastBtn = document.getElementById('close-toast');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formToast.classList.remove('hidden');
+            formToast.classList.add('flex');
+            contactForm.reset();
+        });
+    }
+    if (closeToastBtn) {
+        closeToastBtn.addEventListener('click', () => {
+            formToast.classList.add('hidden');
+            formToast.classList.remove('flex');
+        });
+    }
+});
+</script>
+
+</body>
+</html>
